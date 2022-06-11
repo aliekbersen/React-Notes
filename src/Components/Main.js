@@ -5,10 +5,10 @@ function Main( { activeNote, onUpdateNote } ) {
     onUpdateNote({
       ...activeNote,
       [key]: value,
-      lastModified: Date.now()
+      lastModified: Date.now(),
     })
   }
-
+  if (!activeNote) return <div className="no-active-note">No Active Note</div>;
   return (
     <div className='app-main'>
         <div className='app-main-note'>

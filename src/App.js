@@ -1,55 +1,61 @@
-import { useState , useEffect} from 'react';
-import uuid from 'react-uuid'
-import './App.css';
-import Sidebar from './Components/Sidebar';
-import Main from './Components/Main';
+import { useEffect, useState } from "react";
+import uuid from "react-uuid";
+import "./App.css";
+import Main from "./Components/Main"
+import Sidebar from "./Components/Sidebar";
 
 function App() {
-  const [notes, setNotes] = useState([]) 
-
+  const [notes, setNotes] = useState(
+    localStorage.notes ? JSON.parse(localStorage.notes) : []
+  );
   const [activeNote, setActiveNote] = useState(false);
-  
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
+
   const onAddNote = () => {
     const newNote = {
       id: uuid(),
       title: "Untitled Note",
-      body:"",
+      body: "",
       lastModified: Date.now(),
-    }
+    };
+
     setNotes([newNote, ...notes]);
-  } ;
+    setActiveNote(newNote.id);
+  };
+
+  const onDeleteNote = (noteId) => {
+    setNotes(notes.filter(({ id }) => id !== noteId));
+  };
+
   const onUpdateNote = (updatedNote) => {
-    const updatedNotesArray = notes.map((note) =>{
-      if(note.id === activeNote){
+    const updatedNotesArr = notes.map((note) => {
+      if (note.id === updatedNote.id) {
         return updatedNote;
       }
-      return note
-    })
 
-    setNotes(updatedNotesArray);
-  }
+      return note;
+    });
 
-  const onDeleteNote =(idToDelete) =>{
-    setNotes(notes.filter((note) => note.id !== idToDelete ));
+    setNotes(updatedNotesArr);
   };
-   const getActiveNote = () => {
-     return notes.find((note) => note.id === activeNote)
-   }
-  
+
+  const getActiveNote = () => {
+    return notes.find(({ id }) => id === activeNote);
+  };
 
   return (
     <div className="App">
-      <Sidebar 
-      notes={notes}
-      onAddNote={onAddNote}
-      onDeleteNote={onDeleteNote}
-      activeNote={activeNote}
-      setActiveNote={setActiveNote}
+      <Sidebar
+        notes={notes}
+        onAddNote={onAddNote}
+        onDeleteNote={onDeleteNote}
+        activeNote={activeNote}
+        setActiveNote={setActiveNote}
       />
-      <Main 
-      activeNote={getActiveNote()}
-      onUpdateNote={onUpdateNote()}
-      />
+      <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
     </div>
   );
 }
