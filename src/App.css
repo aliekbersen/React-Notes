@@ -1,0 +1,135 @@
+.App {
+    display: flex;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+button {
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: inherit;
+    cursor: pointer;
+    color: #08c;
+    font-weight: bold;
+  }
+  button:hover {
+    color: #04c;
+  }
+  .sidebar{
+    width: 30%;
+    height: 100vh;
+    border-right: 1px solid #ddd;
+  }
+  .header h1 {
+      margin: 0px;
+  }
+  .notes{
+        font-family: sans-serif;
+        height: calc(100vh - 78px);
+        overflow-y: scroll;
+        
+  }
+  .note-title{
+    display: flex;
+    justify-content: space-between;
+      
+  }
+  .note-title button{
+       
+        background: none;
+        border: 0;
+        font-size: 18px;
+        font-family: inherit;
+        cursor: pointer;
+        color: rgb(189, 32, 32);
+        font-weight: normal;
+  }
+  .note-title button:hover {
+        color: rgb(255, 0, 0);
+  }
+  .app-sidebar-note{
+    cursor: pointer;
+    padding: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.app-sidebar-note p {
+    margin: 10px 0;
+  }
+  .app-sidebar-note small {
+    display: block;
+    color: #999;
+  }
+  
+  .app-sidebar-note:hover {
+    background: #ddd;
+  }
+  .app-sidebar-note.active,
+  .app-sidebar-note.active small {
+    background: #08c;
+    color: white;
+  }
+
+  /* Main CSS */  
+.app-main{
+    width: 70%;
+    height: 100vh;
+}
+.app-main-note-edit,
+.app-main-note-preview {
+  height: 50vh;
+}
+.no-active-note {
+    width: 70%;
+    height: 100vh;
+    line-height: 100vh;
+    text-align: center;
+    font-size: 2rem;
+    color: #999;
+}
+.app-main-note-edit {
+    padding: 25px;
+  }
+  
+  .app-main-note-edit input,
+  textarea {
+    display: block;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    width: 100%;
+    height: calc(50vh - 130px);
+    padding: 10px;
+    resize: none;
+    font-size: inherit;
+    font-family: inherit;
+  }
+  .app-main-note-edit input {
+    height: 50px;
+    font-size: 2rem;
+  }
+  
+  /* Preview */
+  .app-main-note-preview {
+    border-top: 1px solid #ddd;
+    overflow-y: scroll;
+    background: rgba(0, 0, 0, 0.02);
+  }
+  
+  .preview-title {
+    padding: 25px 25px 0 25px;
+    margin: 0;
+  }
+  
+  .markdown-preview {
+    padding: 0 25px 25px 25px;
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  #title{
+   width: 100%;
+  }
